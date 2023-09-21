@@ -55,7 +55,7 @@ const CreateBlog = () => {
         </h3>
         <form
           onSubmit={(e) => handleCreateBlog(e)}
-          className="grid grid-cols-1 md:grid-cols-2 justify-between gap-4 mt-4"
+          className="grid grid-cols-1 justify-between gap-6 mt-4"
         >
           <input
             type="text"
