@@ -77,8 +77,8 @@ const Navbar = () => {
             <Link href="/">
               <Image
                 alt="Logo"
-                className="w-10 h-8"
-                src="https://i.ibb.co/S33Tq0K/logo-nobg-n.png"
+                className="w-8 h-8 rounded-full"
+                src="https://i.ibb.co/wrgvTfG/1688077229726.jpg"
                 decoding="async"
                 loading="lazy"
                 width={300}
@@ -91,8 +91,8 @@ const Navbar = () => {
               <Link href="/">
                 <Image
                   alt="Logo"
-                  className="w-12 h-10"
-                  src="https://i.ibb.co/S33Tq0K/logo-nobg-n.png"
+                  className="w-10 h-10 rounded-full"
+                  src="https://i.ibb.co/wrgvTfG/1688077229726.jpg"
                   decoding="async"
                   loading="lazy"
                   width={300}
@@ -105,55 +105,13 @@ const Navbar = () => {
                 stickyNav ? "sticky-menu" : ""
               }`}
             >
-              <Link href="/exam">Exam</Link>
-            </li>
-            <li
-              className={`left-menus__menu hidden lg:inline-block font-semibold hover:text-blue-600 ${
-                stickyNav ? "sticky-menu" : ""
-              }`}
-            >
-              <Link href="/test">Test</Link>
-            </li>
-            <li
-              className={`left-menus__menu inline-block font-semibold hover:text-blue-600 ${
-                stickyNav ? "sticky-menu" : ""
-              }`}
-            >
-              <Link href="/bookmarks">Bookmarks</Link>
-            </li>
-            <li
-              className={`left-menus__menu inline-block font-semibold hover:text-blue-600 ${
-                stickyNav ? "sticky-menu" : ""
-              }`}
-            >
-              <Link href="/random-question">Random Question</Link>
-            </li>
-            <li
-              className={`left-menus__menu inline-block font-semibold hover:text-blue-600 ${
-                stickyNav ? "sticky-menu" : ""
-              }`}
-            >
-              <Link href="/discussion">Discuss</Link>
+              <Link href="/blog">Blogs</Link>
             </li>
           </div>
           {/* right side menu for large devices  */}
           <div className="body__right-menus hidden md:flex md:items-center gap-4">
             {myProfile?.email ? (
               <>
-                {myProfile?.isPremium || (
-                  <li
-                    className={`px-2 flex items-center border-2 rounded-lg bg-green-500 hover:bg-green-600 text-white duration-300  `}
-                  >
-                    <Link
-                      className="btn-link hover:no-underline"
-                      href="/be-a-premium-user"
-                    >
-                      <h6 className={`btn-text text-white`}>
-                        Be a premium user
-                      </h6>
-                    </Link>
-                  </li>
-                )}
                 <li
                   className={`px-2 flex items-center border-2 rounded-lg hover:bg-green-500 duration-300  `}
                 >
@@ -224,8 +182,8 @@ const Navbar = () => {
                   <Link href="/">
                     <Image
                       alt="Logo"
-                      className="w-10 h-8"
-                      src="https://i.ibb.co/S33Tq0K/logo-nobg-n.png"
+                      className="w-8 h-8 rounded-full"
+                      src="https://i.ibb.co/wrgvTfG/1688077229726.jpg"
                       decoding="async"
                       loading="lazy"
                       width={300}
@@ -242,54 +200,13 @@ const Navbar = () => {
               <div className="sidebar__body">
                 <li onClick={() => setIsOpen(false)} className="body__menu">
                   <Link
-                    href="/exam"
+                    href="/blog"
                     className="w-full block hover:bg-gray-200 px-2 p-1 rounded-md"
                   >
-                    Exam
+                    Blogs
                   </Link>
                 </li>
-                <li onClick={() => setIsOpen(false)} className="body__menu">
-                  <Link
-                    href="/test"
-                    className="w-full block hover:bg-gray-200 px-2 p-1 rounded-md"
-                  >
-                    Test
-                  </Link>
-                </li>
-                {myProfile?.isPremium || (
-                  <li onClick={() => setIsOpen(false)} className="body__menu">
-                    <Link
-                      href="/be-a-premium-user"
-                      className="w-full block hover:bg-gray-200 px-2 p-1 rounded-md"
-                    >
-                      Be a premium user
-                    </Link>
-                  </li>
-                )}
-                <li onClick={() => setIsOpen(false)} className="body__menu">
-                  <Link
-                    href="/random-question"
-                    className="w-full block hover:bg-gray-200 px-2 p-1 rounded-md"
-                  >
-                    Random Question
-                  </Link>
-                </li>
-                <li onClick={() => setIsOpen(false)} className="body__menu">
-                  <Link
-                    href="/discussion"
-                    className="w-full block hover:bg-gray-200 px-2 p-1 rounded-md"
-                  >
-                    Discuss
-                  </Link>
-                </li>
-                <li onClick={() => setIsOpen(false)} className="body__menu">
-                  <Link
-                    href="/about-us"
-                    className="w-full block hover:bg-gray-200 px-2 p-1 rounded-md"
-                  >
-                    About us
-                  </Link>
-                </li>
+
                 {myProfile?.email ? (
                   <li onClick={() => setIsOpen(false)} className="body__menu">
                     <Link
