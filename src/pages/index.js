@@ -1,7 +1,25 @@
-import React from "react";
+import RootLayout from "@/layouts/RootLayout";
+import { useRouter } from "next/router";
 
-const index = () => {
-  return <div>Hello world!</div>;
+const HomePage = () => {
+  const router = useRouter();
+  const login =
+    router?.components?.["/login"] ||
+    router?.components?.["/be-a-premium-user"];
+
+  if (login) {
+    window.location.reload();
+  }
+
+  return (
+    <>
+      <h1>Hello World</h1>
+    </>
+  );
 };
 
-export default index;
+export default HomePage;
+
+HomePage.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};

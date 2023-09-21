@@ -8,17 +8,17 @@ const Footer = () => {
         <div>
           <Image
             alt="Logo"
-            className="w-14 rounded-lg"
-            src="https://i.ibb.co/5MHLgQW/images-removebg-preview.png"
+            className="w-12 rounded-full border-2"
+            src="https://i.ibb.co/wrgvTfG/1688077229726.jpg"
             decoding="async"
             loading="lazy"
             width={300}
             height={300}
           />
           <p>
-            QuizWizPro Ltd.
+            BlogWave Ltd.
             <br />
-            Providing reliable tech since 2022
+            Providing reliable tech since 2023
           </p>
         </div>
         <div>
