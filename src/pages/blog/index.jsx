@@ -1,10 +1,20 @@
+import RootLayout from "@/layouts/RootLayout";
 import { useGetAllBlogQuery } from "@/redux/blog/blogApi";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Blog = () => {
-  const { data: getAllBlog } = useGetAllBlogQuery();
-  console.log(getAllBlog?.data);
+  const accessToken =
+    typeof window !== "undefined" ? localStorage.getItem("access-token") : null;
+
+  const headers = {
+    authorization: accessToken,
+  };
+
+  //   Data Query
+  const { data: getAllBlog } = useGetAllBlogQuery({ headers });
+
   return (
     <div>
       <div>
@@ -28,9 +38,11 @@ const Blog = () => {
               <h2 className="card-title text-green-500">{blog?.title}</h2>
               <p>{blog?.description.slice(1, 100)}...</p>
               <div className="card-actions justify-end">
-                <div className="badge badge-primary btn-xs px-4 cursor-pointer">
-                  Details
-                </div>
+                <Link href={`/blog/${blog?.id}`}>
+                  <div className="badge badge-primary btn-xs px-4 cursor-pointer">
+                    Details
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -41,3 +53,7 @@ const Blog = () => {
 };
 
 export default Blog;
+
+Blog.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
