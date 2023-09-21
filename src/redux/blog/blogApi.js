@@ -4,7 +4,7 @@ const blogApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createBlog: builder.mutation({
       query: ({ data, headers }) => ({
-        url: `/blog/create-blog`,
+        url: `/blogs/create-blog`,
         method: "POST",
         body: data,
         headers: headers,
@@ -12,16 +12,16 @@ const blogApi = apiSlice.injectEndpoints({
       invalidatesTags: ["blog"],
     }),
     getAllBlog: builder.query({
-      query: () => `/blog`,
+      query: () => `/blogs`,
       providesTags: ["blog"],
     }),
     getSingleBlog: builder.query({
-      query: (id) => `/blog/${id}`,
+      query: (id) => `/blogs/${id}`,
       providesTags: ["blog"],
     }),
     deleteBlog: builder.mutation({
       query: ({ id, headers }) => ({
-        url: `/blog/${id}`,
+        url: `/blogs/${id}`,
         method: "DELETE",
         headers: headers,
       }),
@@ -29,7 +29,7 @@ const blogApi = apiSlice.injectEndpoints({
     }),
     updateBlog: builder.mutation({
       query: ({ id, data, headers }) => ({
-        url: `/blog/${id}`,
+        url: `/blogs/${id}`,
         method: "PATCH",
         body: data,
         headers: headers,
