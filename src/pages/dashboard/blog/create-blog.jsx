@@ -1,25 +1,27 @@
 import useProtectedRoute from "@/hooks/useProtectedRoute";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { useCreateBlogMutation } from "@/redux/blog/blogApi";
-import { useEffect, useState } from "react";
+import { useGetMyProfileQuery } from "@/redux/user/userApi";
+import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 const jwt = require("jsonwebtoken");
 
 const CreateBlog = () => {
-  const [createBlog, { data, isError, isLoading, isSuccess, error, status }] =
-    useCreateBlogMutation();
-
   const accessToken =
     typeof window !== "undefined" ? localStorage.getItem("access-token") : null;
   const decodedToken = jwt.decode(accessToken);
 
-  // Protect Route
-  useProtectedRoute(decodedToken?.role || "guest");
-
   const headers = {
     authorization: accessToken,
   };
+
+  const [createBlog, { data, isError, isLoading, isSuccess, error, status }] =
+    useCreateBlogMutation();
+  const { data: getMyProfile } = useGetMyProfileQuery({ headers });
+
+  // Protect Route
+  useProtectedRoute(decodedToken?.role || "guest");
 
   const handleCreateBlog = (e) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const CreateBlog = () => {
       videoUrl: e.target.videoUrl.value,
       title: e.target.title.value,
       description: e.target.description.value,
+      email: getMyProfile?.data?.email,
     };
 
     createBlog({ data, headers });

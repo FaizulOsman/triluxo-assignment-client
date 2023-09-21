@@ -1,5 +1,6 @@
 import RootLayout from "@/layouts/RootLayout";
 import { useRouter } from "next/router";
+import Blog from "./blog";
 
 const HomePage = () => {
   const router = useRouter();
@@ -13,7 +14,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Hello World</h1>
+      <Blog />
     </>
   );
 };
