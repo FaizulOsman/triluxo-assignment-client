@@ -12,7 +12,11 @@ const blogApi = apiSlice.injectEndpoints({
       invalidatesTags: ["blog"],
     }),
     getAllBlog: builder.query({
-      query: () => `/blogs`,
+      query: ({ headers }) => ({
+        url: `/blogs`,
+        method: "GET",
+        headers: headers,
+      }),
       providesTags: ["blog"],
     }),
     getSingleBlog: builder.query({

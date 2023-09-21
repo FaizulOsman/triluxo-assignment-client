@@ -15,8 +15,6 @@ import { MdDeleteOutline } from "react-icons/md";
 const jwt = require("jsonwebtoken");
 
 const AllBlog = () => {
-  const { data: allBlog } = useGetAllBlogQuery();
-
   const accessToken =
     typeof window !== "undefined" ? localStorage.getItem("access-token") : null;
   const decodedToken = jwt.decode(accessToken);
@@ -27,6 +25,17 @@ const AllBlog = () => {
   const headers = {
     authorization: accessToken,
   };
+
+  // Data Query
+  const { data: allBlog } = useGetAllBlogQuery({ headers });
+  const [
+    deleteBlog,
+    {
+      isError: deleteBlogIsError,
+      isSuccess: deleteBlogIs,
+      error: deleteBlogError,
+    },
+  ] = useDeleteBlogMutation();
 
   const blogUniqueSubjects = [];
   allBlog?.data?.map((blog) => {
@@ -42,15 +51,6 @@ const AllBlog = () => {
       blogUniqueSubjects.push(blog);
     }
   });
-
-  const [
-    deleteBlog,
-    {
-      isError: deleteBlogIsError,
-      isSuccess: deleteBlogIs,
-      error: deleteBlogError,
-    },
-  ] = useDeleteBlogMutation();
 
   const handleDeleteBlog = (blog) => {
     const isConfirm = window.confirm(
@@ -80,22 +80,28 @@ const AllBlog = () => {
 
   useEffect(() => {
     if (updateBlogIsError) {
-      toast.error(`${error?.data?.message}` || "Blog Update Failed!");
+      toast.error(`${updateBlogError?.data?.message}` || "Blog Update Failed!");
     }
 
     if (updateBlogIsSuccess) {
       toast.success(success?.message || "Blog Updated Successfully!");
+    }
+
+    if (deleteBlogIsError) {
+      toast.error(deleteBlogError?.data?.message || "You can not delete!");
     }
   }, [
     updateBlogIsSuccess,
     updateBlogIsError,
     updateBlogError,
     success?.message,
+    deleteBlogIsError,
+    deleteBlogError,
   ]);
 
   return (
     <div>
-      <div className="my-20 w-11/12 md:w-10/12 mx-auto">
+      <div className="my-10 w-11/12 md:w-10/12 mx-auto">
         <h1 className="text-3xl font-semibold text-center my-8">Blogs</h1>
         {allBlog?.data ? (
           <div className="mt-10 flex flex-col gap-5">
@@ -105,9 +111,15 @@ const AllBlog = () => {
                 className="flex justify-between items-center bg-[#1d1836] p-2 rounded-md"
               >
                 <div className="w-[70%] pr-2">
-                  <p className="text-md">Title: {blog?.title}</p>
+                  <p className="text-md">
+                    <span className="font-semibold text-blue-500">Title:</span>{" "}
+                    {blog?.title}
+                  </p>
                   <p className="text-sm mt-2">
-                    Description: {blog?.description.slice(0, 200)}
+                    <span className="font-semibold text-blue-500">
+                      Description:
+                    </span>{" "}
+                    {blog?.description.slice(0, 200)}
                   </p>
                 </div>
                 <div className="flex flex-col items-center justify-between gap-4">
