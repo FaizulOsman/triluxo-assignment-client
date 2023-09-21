@@ -7,5 +7,5 @@
 
 ## Github Repository Link:
 
-- Frontend:
-- Backend:
+- Frontend: https://github.com/FaizulOsman/triluxo-assignment-client
+- Backend: https://github.com/FaizulOsman/triluxo-assignment-server
