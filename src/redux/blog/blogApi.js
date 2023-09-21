@@ -12,8 +12,15 @@ const blogApi = apiSlice.injectEndpoints({
       invalidatesTags: ["blog"],
     }),
     getAllBlog: builder.query({
-      query: ({ headers }) => ({
+      query: () => ({
         url: `/blogs`,
+        method: "GET",
+      }),
+      providesTags: ["blog"],
+    }),
+    getBlogsByAuthorization: builder.query({
+      query: ({ headers }) => ({
+        url: `/blogs/get-blogs-by-authorization`,
         method: "GET",
         headers: headers,
       }),
@@ -46,6 +53,7 @@ const blogApi = apiSlice.injectEndpoints({
 export const {
   useCreateBlogMutation,
   useGetAllBlogQuery,
+  useGetBlogsByAuthorizationQuery,
   useGetSingleBlogQuery,
   useDeleteBlogMutation,
   useUpdateBlogMutation,

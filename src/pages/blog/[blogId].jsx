@@ -1,3 +1,4 @@
+import Comment from "@/components/UI/Comment";
 import RootLayout from "@/layouts/RootLayout";
 import { useGetSingleBlogQuery } from "@/redux/blog/blogApi";
 import Image from "next/image";
@@ -10,22 +11,25 @@ const SingleBlog = () => {
 
   // Data Query
   const { data: getSingleBlog } = useGetSingleBlogQuery(id);
-  console.log(getSingleBlog?.data);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-14 items-center">
-      <Image
-        src={getSingleBlog?.data?.imageUrl}
-        alt="Blog Image"
-        className="w-full mx-auto"
-        width={300}
-        height={300}
-      />
-      <div>
-        <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold text-center my-5 text-blue-600">
-          {getSingleBlog?.data?.title}
-        </h1>
-        <p>{getSingleBlog?.data?.description}</p>
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-14 items-center">
+        <Image
+          src={getSingleBlog?.data?.imageUrl}
+          alt="Blog Image"
+          className="w-full mx-auto"
+          width={300}
+          height={300}
+        />
+        <div>
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold text-center my-5 text-blue-600">
+            {getSingleBlog?.data?.title}
+          </h1>
+          <p>{getSingleBlog?.data?.description}</p>
+        </div>
       </div>
+      <Comment blogId={getSingleBlog?.data?.id} />
     </div>
   );
 };

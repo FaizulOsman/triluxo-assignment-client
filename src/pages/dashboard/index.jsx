@@ -3,7 +3,10 @@ import {
   useGetAllUsersQuery,
   useGetMyProfileQuery,
 } from "@/redux/user/userApi";
-import { useGetAllBlogQuery } from "@/redux/blog/blogApi";
+import {
+  useGetAllBlogQuery,
+  useGetBlogsByAuthorizationQuery,
+} from "@/redux/blog/blogApi";
 import AllBlog from "./blog/all-blog";
 import Users from "./users";
 import useProtectedRoute from "@/hooks/useProtectedRoute";
@@ -29,7 +32,10 @@ const Dashboard = () => {
   };
 
   const { data: getAllUser } = useGetAllUsersQuery({ headers });
-  const { data: getAllBlog } = useGetAllBlogQuery({ headers });
+  const { data: getAllBlog } = useGetAllBlogQuery();
+  const { data: getBlogsByAuthorization } = useGetBlogsByAuthorizationQuery({
+    headers,
+  });
   const { data: getMyProfile } = useGetMyProfileQuery({ headers });
 
   return (
@@ -109,7 +115,9 @@ const Dashboard = () => {
               </div>
               <div className="text-right">
                 <p className="text-2xl">
-                  {getAllBlog?.data ? getAllBlog?.data?.length : 0}
+                  {getBlogsByAuthorization?.data
+                    ? getBlogsByAuthorization?.data?.length
+                    : 0}
                 </p>
                 <p>My Blog</p>
               </div>

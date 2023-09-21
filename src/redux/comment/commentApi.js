@@ -15,8 +15,9 @@ const commentApi = apiSlice.injectEndpoints({
         `/comments?page=${page}&limit=${limit}&sortOrder=${sortOrder}`,
       providesTags: ["blog"],
     }),
-    getSingleComment: builder.query({
-      query: (id) => `/comments/${id}`,
+    getCommentsById: builder.query({
+      query: ({ id, page, limit, sortOrder }) =>
+        `/comments/${id}?page=${page}&limit=${limit}&sortOrder=${sortOrder}`,
       providesTags: ["blog"],
     }),
     deleteComment: builder.mutation({
@@ -41,7 +42,7 @@ const commentApi = apiSlice.injectEndpoints({
 export const {
   useCreateCommentMutation,
   useGetAllCommentQuery,
-  useGetSingleCommentQuery,
+  useGetCommentsByIdQuery,
   useDeleteCommentMutation,
   useUpdateCommentMutation,
 } = commentApi;

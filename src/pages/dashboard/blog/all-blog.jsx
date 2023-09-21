@@ -4,6 +4,7 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import {
   useDeleteBlogMutation,
   useGetAllBlogQuery,
+  useGetBlogsByAuthorizationQuery,
   useUpdateBlogMutation,
 } from "@/redux/blog/blogApi";
 import Link from "next/link";
@@ -27,7 +28,7 @@ const AllBlog = () => {
   };
 
   // Data Query
-  const { data: allBlog } = useGetAllBlogQuery({ headers });
+  const { data: allBlog } = useGetBlogsByAuthorizationQuery({ headers });
   const [
     deleteBlog,
     {
@@ -120,6 +121,12 @@ const AllBlog = () => {
                       Description:
                     </span>{" "}
                     {blog?.description.slice(0, 200)}
+                  </p>{" "}
+                  <p className="text-md">
+                    <span className="font-semibold text-blue-500">
+                      Creator:
+                    </span>{" "}
+                    {blog?.email}
                   </p>
                 </div>
                 <div className="flex flex-col items-center justify-between gap-4">
