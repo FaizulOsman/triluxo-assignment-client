@@ -31,7 +31,7 @@ const Dashboard = () => {
   const { data: getAllUser } = useGetAllUsersQuery({ headers });
   const { data: getAllBlog } = useGetAllBlogQuery({});
   const { data: getMyProfile } = useGetMyProfileQuery({ headers });
-
+  console.log(getAllUser);
   return (
     <div className="title">
       <div x-data="setup()">

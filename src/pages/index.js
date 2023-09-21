@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 
 const HomePage = () => {
   const router = useRouter();
-  const login =
+  const isReload =
     router?.components?.["/login"] ||
     router?.components?.["/be-a-premium-user"];
 
-  if (login) {
+  if (isReload) {
     window.location.reload();
   }
 

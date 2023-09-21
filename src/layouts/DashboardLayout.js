@@ -149,14 +149,14 @@ const DashboardLayout = ({ children }) => {
                   exit="hidden"
                   className="text-lg leading-[0px] pl-2"
                 >
-                  QuizWizPro
+                  BlogWave
                 </motion.h1>
               )}
             </AnimatePresence>
             <div className="cursor-pointer">
               <Image
                 alt="Logo"
-                className="w-12"
+                className="w-8 h-8 rounded-full border-2 mx-1"
                 src="https://i.ibb.co/wrgvTfG/1688077229726.jpg"
                 decoding="async"
                 loading="lazy"

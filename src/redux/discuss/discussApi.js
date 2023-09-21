@@ -8,16 +8,16 @@ const commentApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["test-yourself"],
+      invalidatesTags: ["blog"],
     }),
     getAllComment: builder.query({
       query: ({ page, limit, sortOrder }) =>
         `/comments?page=${page}&limit=${limit}&sortOrder=${sortOrder}`,
-      providesTags: ["test-yourself"],
+      providesTags: ["blog"],
     }),
     getSingleComment: builder.query({
       query: (id) => `/comments/${id}`,
-      providesTags: ["test-yourself"],
+      providesTags: ["blog"],
     }),
     deleteComment: builder.mutation({
       query: ({ id, headers }) => ({
@@ -25,7 +25,7 @@ const commentApi = apiSlice.injectEndpoints({
         method: "DELETE",
         headers: headers,
       }),
-      invalidatesTags: ["test-yourself"],
+      invalidatesTags: ["blog"],
     }),
     updateComment: builder.mutation({
       query: ({ id, data }) => ({
@@ -33,7 +33,7 @@ const commentApi = apiSlice.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["test-yourself"],
+      invalidatesTags: ["blog"],
     }),
   }),
 });

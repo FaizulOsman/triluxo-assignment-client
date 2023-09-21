@@ -89,15 +89,6 @@ const Users = () => {
     }, [3000]);
   };
 
-  const handlePremium = (user, value) => {
-    const data = { isPremium: value };
-    updateUser({ id: user?.id, data, headers });
-
-    setTimeout(() => {
-      window.location.reload();
-    }, [3000]);
-  };
-
   useEffect(() => {
     setAllUsers(getAllUsers?.data);
     setMeta(getAllUsers?.meta);

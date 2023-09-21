@@ -31,7 +31,7 @@ const Navbar = () => {
     if (accessToken) {
       try {
         const url =
-          "https://test-yourself-server.vercel.app/api/v1/users/my-profile";
+          "https://blog-wave-server.vercel.app/api/v1/users/my-profile";
         const options = {
           headers: {
             authorization: accessToken,
