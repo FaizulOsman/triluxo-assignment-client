@@ -31,6 +31,7 @@ const Dashboard = () => {
     authorization: accessToken,
   };
 
+  // Data Query
   const { data: getAllUser } = useGetAllUsersQuery({ headers });
   const { data: getAllBlog } = useGetAllBlogQuery();
   const { data: getBlogsByAuthorization } = useGetBlogsByAuthorizationQuery({
@@ -128,8 +129,8 @@ const Dashboard = () => {
               <Users />
             </div>
           )}
-          <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
-            {getMyProfile?.data && (
+          <div className="grid grid-cols-1 p-4 gap-4">
+            {getBlogsByAuthorization?.data && (
               <div className="border-2 border-blue-900 rounded-sm">
                 <AllBlog />
               </div>

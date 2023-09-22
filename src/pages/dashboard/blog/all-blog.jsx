@@ -104,70 +104,82 @@ const AllBlog = () => {
     <div>
       <div className="my-10 w-11/12 md:w-10/12 mx-auto">
         <h1 className="text-3xl font-semibold text-center my-8">Blogs</h1>
-        {allBlog?.data ? (
-          <div className="mt-10 flex flex-col gap-5">
-            {allBlog?.data?.map((blog, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center bg-[#1d1836] p-2 rounded-md"
-              >
-                <div className="w-[70%] pr-2">
-                  <p className="text-md">
-                    <span className="font-semibold text-blue-500">Title:</span>{" "}
-                    {blog?.title}
-                  </p>
-                  <p className="text-sm mt-2">
-                    <span className="font-semibold text-blue-500">
-                      Description:
-                    </span>{" "}
-                    {blog?.description.slice(0, 200)}
-                  </p>{" "}
-                  <p className="text-md">
-                    <span className="font-semibold text-blue-500">
-                      Creator:
-                    </span>{" "}
-                    {blog?.email}
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-between gap-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <button
-                      onClick={() => handleDeleteBlog(blog)}
-                      className="text-2xl border-none  text-red-500 hover:text-red-600"
-                    >
-                      <MdDeleteOutline />
-                    </button>
-                    <Link
-                      href={`/dashboard/blog/update/${blog?.id}`}
-                      className="flex items-center"
-                    >
-                      <button className="text-lg border-none text-primary hover:text-blue-600">
-                        <FaRegEdit />
-                      </button>
-                    </Link>
+        {allBlog?.data?.length > 0 ? (
+          <>
+            {allBlog?.data ? (
+              <div className="mt-10 flex flex-col gap-5">
+                {allBlog?.data?.map((blog, index) => (
+                  <div
+                    key={index}
+                    className="flex justify-between items-center bg-[#1d1836] p-2 rounded-md"
+                  >
+                    <div className="w-[70%] pr-2">
+                      <p className="text-md">
+                        <span className="font-semibold text-blue-500">
+                          Title:
+                        </span>{" "}
+                        {blog?.title}
+                      </p>
+                      <p className="text-sm mt-2">
+                        <span className="font-semibold text-blue-500">
+                          Description:
+                        </span>{" "}
+                        {blog?.description.slice(0, 200)}
+                      </p>{" "}
+                      <p className="text-md">
+                        <span className="font-semibold text-blue-500">
+                          Creator:
+                        </span>{" "}
+                        {blog?.email}
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-center justify-between gap-4">
+                      <div className="flex items-center justify-between gap-4">
+                        <button
+                          onClick={() => handleDeleteBlog(blog)}
+                          className="text-2xl border-none  text-red-500 hover:text-red-600"
+                        >
+                          <MdDeleteOutline />
+                        </button>
+                        <Link
+                          href={`/dashboard/blog/update/${blog?.id}`}
+                          className="flex items-center"
+                        >
+                          <button className="text-lg border-none text-primary hover:text-blue-600">
+                            <FaRegEdit />
+                          </button>
+                        </Link>
+                      </div>
+                      {blog?.isPublished ? (
+                        <button
+                          onClick={() => handlePublish(blog, false)}
+                          className="w-full h-full btn-xs border-2 border-blue-500 rounded-md px-2 text-blue-500 hover:bg-blue-500 hover:text-white"
+                        >
+                          Remove Publish
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handlePublish(blog, true)}
+                          className="w-full h-full btn-xs border-2 border-blue-500 rounded-md px-2 text-blue-500 hover:bg-blue-500 hover:text-white"
+                        >
+                          Make Publish
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  {blog?.isPublished ? (
-                    <button
-                      onClick={() => handlePublish(blog, false)}
-                      className="w-full h-full btn-xs border-2 border-blue-500 rounded-md px-2 text-blue-500 hover:bg-blue-500 hover:text-white"
-                    >
-                      Remove Publish
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handlePublish(blog, true)}
-                      className="w-full h-full btn-xs border-2 border-blue-500 rounded-md px-2 text-blue-500 hover:bg-blue-500 hover:text-white"
-                    >
-                      Make Publish
-                    </button>
-                  )}
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            ) : (
+              <div className="py-10">
+                <Loader />
+              </div>
+            )}
+          </>
         ) : (
-          <div className="py-10">
-            <Loader />
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl text-center text-red-500 py-10">
+              No Data Found
+            </h2>
           </div>
         )}
       </div>

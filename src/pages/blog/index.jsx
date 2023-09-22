@@ -1,3 +1,4 @@
+import Loader from "@/components/UI/Loader";
 import RootLayout from "@/layouts/RootLayout";
 import { useGetAllBlogQuery } from "@/redux/blog/blogApi";
 import Image from "next/image";
@@ -15,36 +16,42 @@ const Blog = () => {
           Blogs
         </h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {getAllBlog?.data?.map((blog, index) => (
-          <>
-            {blog?.isPublished && (
-              <div key={index} className="card w-full bg-base-100 shadow-xl">
-                <figure>
-                  <Image
-                    src={blog?.imageUrl}
-                    className="w-full h-[200px]"
-                    width={300}
-                    height={300}
-                    alt="Shoes"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title text-green-500">{blog?.title}</h2>
-                  <p>{blog?.description.slice(1, 100)}...</p>
-                  <div className="card-actions justify-end">
-                    <Link href={`/blog/${blog?.id}`}>
-                      <div className="badge badge-primary btn-xs px-4 cursor-pointer">
-                        Details
-                      </div>
-                    </Link>
+      {getAllBlog?.data?.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {getAllBlog?.data?.map((blog, index) => (
+            <>
+              {blog?.isPublished && (
+                <div key={index} className="card w-full bg-base-100 shadow-xl">
+                  <figure>
+                    <Image
+                      src={blog?.imageUrl}
+                      className="w-full h-[200px]"
+                      width={300}
+                      height={300}
+                      alt="Shoes"
+                    />
+                  </figure>
+                  <div className="p-4">
+                    <h2 className="card-title text-green-500">{blog?.title}</h2>
+                    <p>{blog?.description.slice(1, 100)}...</p>
+                    <div className="card-actions justify-end">
+                      <Link href={`/blog/${blog?.id}`}>
+                        <div className="badge badge-primary btn-xs px-4 cursor-pointer">
+                          Details
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </>
-        ))}
-      </div>
+              )}
+            </>
+          ))}
+        </div>
+      ) : (
+        <div className="py-16">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };
