@@ -12,12 +12,12 @@ const Blog = () => {
   return (
     <div>
       <div>
-        <h1 className="text-green-500 text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
+        <h1 class="text-center mb-8 text-2xl font-extrabold leading-tight lg:text-4xl text-green-600">
           Blogs
         </h1>
       </div>
       {getAllBlog?.data?.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {getAllBlog?.data?.map((blog, index) => (
             <>
               {blog?.isPublished && (

@@ -1,6 +1,7 @@
 import RootLayout from "@/layouts/RootLayout";
 import { useRouter } from "next/router";
 import Blog from "./blog";
+import Hero from "@/components/UI/Hero";
 
 const HomePage = () => {
   const router = useRouter();
@@ -14,6 +15,7 @@ const HomePage = () => {
 
   return (
     <>
+      <Hero />
       <Blog />
     </>
   );
